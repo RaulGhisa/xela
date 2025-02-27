@@ -1,5 +1,5 @@
+from testing.mock_xela_client import MockXelaClient
 import time
-from mock_xela_client import MockXelaClient
 import t_utils
 
 

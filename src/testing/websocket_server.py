@@ -7,7 +7,7 @@ import logging
 import json
 from datetime import datetime
 
-import data_generator
+import utils.data_generator as data_generator
 
 
 DATA_FILE_PATH = r'resources/all_grid_run__20250221T114712.json'

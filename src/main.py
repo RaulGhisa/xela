@@ -1,5 +1,5 @@
 import logging
-from logger_setup import setup_logger
+from utils.logger_setup import setup_logger
 
 
 if __name__ == '__main__':
