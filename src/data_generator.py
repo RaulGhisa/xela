@@ -1,3 +1,5 @@
+import json
+import os
 import random
 import time
 
@@ -78,3 +80,6 @@ if __name__ == '__main__':
         print(x)
 
     print(mock_data[11]["sendtime"] - mock_data[10]["sendtime"])
+
+    with open(os.path.abspath('resources/mock_data.json'), 'w') as file:
+        json.dump(mock_data, file)
