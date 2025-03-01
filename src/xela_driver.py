@@ -27,7 +27,7 @@ class XelaClientState(enum.Enum):
         return self == self.COLLECTING_DATA
 
 
-class XelaClient:
+class XelaDriver:
     TIME_TO_WAIT_AFTER_ERROR = 3
     TIME_TO_WAIT_AFTER_SUCCESS = 0.1
     TIME_TO_WAIT_WHILE_DEVICE_NOT_SUPPOSED_TO_OPEN = 1
@@ -63,6 +63,7 @@ class XelaClient:
                             self._websocket_app = websocket.WebSocketApp("ws://{}:{}".format(self._ip, self._port), on_message=self._on_ws_message)
                             self._websocket_thread = threading.Thread(target=self._websocket_app.run_forever, name='websocketapp')
                             self._websocket_thread.start()
+
                             while not self._websocket_thread.is_alive():
                                 time.sleep(0.01)
 
@@ -135,7 +136,12 @@ class XelaClient:
     def join(self):
         self.stop_and_clean_up()
         logging.info(f'Waiting for "{self._name}" thread to stop...')
-        self._thread.join()
+
+        if self._thread.is_alive():
+            self._thread.join()
+
+        self._thread = None
+
         logging.info(f'"{self._name}" thread stopped.')
 
     def start_data_collection(self):

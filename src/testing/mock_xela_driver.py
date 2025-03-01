@@ -1,9 +1,9 @@
 import logging
 import time
-from xela_client import XelaClient
+from xela_driver import XelaDriver
 
 
-class MockXelaClient(XelaClient):
+class MockXelaClient(XelaDriver):
     def __init__(self, ip='localhost', port=8765):
         super().__init__(ip, port)
 
