@@ -159,4 +159,5 @@ class XelaDriver:
             logging.error('Cannot stop data collection, data is not being collected.')
 
     def get_data(self):
-        return copy.deepcopy(self._messages)
+        with self._access_lock:
+            return copy.deepcopy(self._messages)
